@@ -50,7 +50,8 @@ class Button:
             if event.type == pygame.MOUSEBUTTONDOWN and self.menu_active:
                 if self.text == "run":
                     print("run button clicked")
+                    return 1
                 if self.text == "shuffle":
                     print("shuffle button clicked")
-
+                    return 1
         return -1

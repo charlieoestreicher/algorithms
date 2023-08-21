@@ -49,7 +49,7 @@ option_box = SelectMenu.OptionBox(
     color=(150, 150, 150),
     highlight_color=(100, 200, 255),
     font=pygame.font.SysFont(None, 30),
-    option_list=["option 1", "2nd option", "another option"],
+    option_list=["bubble sort", "binary search", "another option"],
 )
 
 visualize_button = button.Button(
@@ -73,6 +73,12 @@ shuffle_button = button.Button(
 )
 
 
+def shuffle_lst(algo):
+    random.shuffle(lst)
+    return bubbleSort(lst)
+
+
+visualize = 0
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -112,16 +118,21 @@ while running:
     option_box.draw(screen)
     visualize_button.draw(screen)
     shuffle_button.draw(screen)
-    visualize_button.update(event_list)
-    shuffle_button.update(event_list)
+    run = visualize_button.update(event_list)
+    shuffle = shuffle_button.update(event_list)
     # flip() the display to put your work on screen
     pygame.display.flip()
+    if run == 1:
+        visualize = 1
+    if shuffle == 1:
+        visualize = 0
+        steps = shuffle_lst(selected_option)
+        step = 0
 
-    # limits FPS to 60
-    # dt is delta time in seconds since last frame, used for framerate-
-    # independent physics.
     dt = clock.tick(10) / 1000
-    if step < len(steps) - 1:
+    if step < len(steps) - 1 and visualize == 1:
         step += 1
+    if step == len(steps) - 1:
+        visualize = 0
 
 pygame.quit()
