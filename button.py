@@ -17,7 +17,6 @@ class Button:
         # Call this method to draw the button on the screen
         pos = pygame.mouse.get_pos()
         self.menu_active = self.rect.collidepoint(pos)
-        print(self.menu_active)
         if outline:
             pygame.draw.rect(
                 win,
@@ -25,7 +24,6 @@ class Button:
                 (self.x - 2, self.y - 2, self.width + 4, self.height + 4),
                 0,
             )
-        print(self.menu_active)
         pygame.draw.rect(
             win,
             self.highlight_color if self.menu_active else self.color,
@@ -45,28 +43,14 @@ class Button:
                 ),
             )
 
-    def isOver(self, pos):
-        # Pos is the mouse position or a tuple of (x, y) coordinates
-        if pos[0] > self.x and pos[0] < self.x + self.width:
-            if pos[1] > self.y and pos[1] < self.y + self.height:
-                self.menu_active = True
-        self.menu_active = False
-
     def update(self, event_list):
-        mpos = pygame.mouse.get_pos()
-        self.menu_active = self.rect.collidepoint(mpos)
-        # print(self.menu_active)
+        pos = pygame.mouse.get_pos()
+        self.menu_active = self.rect.collidepoint(pos)
+        for event in event_list:
+            if event.type == pygame.MOUSEBUTTONDOWN and self.menu_active:
+                if self.text == "run":
+                    print("run button clicked")
+                if self.text == "shuffle":
+                    print("shuffle button clicked")
 
-        # self.active_option = -1
-        # for i in range(len(self.option_list)):
-        #     rect = self.rect.copy()
-        #     rect.y += (i + 1) * self.rect.height
-        #     if rect.collidepoint(mpos):
-        #         self.active_option = i
-        #         break
-
-        # for event in event_list:
-        #     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-        #         print("hello")
-        #         return
-        # return -1
+        return -1

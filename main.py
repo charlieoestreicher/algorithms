@@ -52,7 +52,7 @@ option_box = SelectMenu.OptionBox(
     option_list=["option 1", "2nd option", "another option"],
 )
 
-run_button = button.Button(
+visualize_button = button.Button(
     color=(150, 150, 150),
     x=160,
     y=0,
@@ -71,6 +71,7 @@ shuffle_button = button.Button(
     highlight_color=(100, 200, 255),
     text="shuffle",
 )
+
 
 while running:
     # poll for events
@@ -109,8 +110,10 @@ while running:
         )
     selected_option = option_box.update(event_list)
     option_box.draw(screen)
-    run_button.draw(screen)
+    visualize_button.draw(screen)
     shuffle_button.draw(screen)
+    visualize_button.update(event_list)
+    shuffle_button.update(event_list)
     # flip() the display to put your work on screen
     pygame.display.flip()
 

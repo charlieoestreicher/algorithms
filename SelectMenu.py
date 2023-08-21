@@ -66,34 +66,3 @@ class OptionBox:
                     self.draw_menu = False
                     return self.active_option
         return -1
-
-
-# list1 = OptionBox(
-#     x=0,
-#     y=0,
-#     w=160,
-#     h=40,
-#     color=(150, 150, 150),
-#     highlight_color=(100, 200, 255),
-#     font=pygame.font.SysFont(None, 30),
-#     option_list=["option 1", "2nd option", "another option"],
-# )
-
-# run = True
-# while run:
-#     clock.tick(60)
-#     event_list = pygame.event.get()
-#     for event in event_list:
-#         if event.type == pygame.QUIT:
-#             run = False
-
-#     selected_option = list1.update(event_list)
-#     if selected_option >= 0:
-#         print(selected_option)
-
-#     window.fill((255, 255, 255))
-#     list1.draw(window)
-#     pygame.display.flip()
-
-# pygame.quit()
-# exit()
